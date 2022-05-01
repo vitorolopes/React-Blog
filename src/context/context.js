@@ -28,7 +28,7 @@ const AppProvider = ({children}) => {
     
     return(
         <AppContext.Provider value={
-            "hello"
+           {...state}
         }>
             {children}
         </AppContext.Provider>
