@@ -1,15 +1,24 @@
-import './App.css';
+import React, { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import PostList from './components/PostList';
+import Home from './pages/Home'
+import Post from './pages/Post'
+
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <Router>
        <Navbar/>
-       <Hero/>
-       <PostList/>
-    </div>
+       
+       <Routes>
+
+          <Route exact path='/' element= { <Home/>} />
+
+          <Route exact path='/posts/:postId' element= { <Post/>} />
+
+       </Routes>
+
+    </Router>
   );
 }
 

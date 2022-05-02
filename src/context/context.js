@@ -14,21 +14,39 @@ const AppProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const getPosts = async () => {
-        dispatch({type: "SET_LOADING", payload: true})
-        const res = await fetch("/posts")
-        const data = await res.json()
-        console.log(data);
-        dispatch({type: "SET_POSTS", payload: data})
-        dispatch({type: "SET_LOADING", payload: false})
+        try {      
+            dispatch({type: "SET_LOADING", payload: true})
+            const res = await fetch("/posts")
+            const data = await res.json()
+            console.log(data);
+            dispatch({type: "SET_POSTS", payload: data})
+            dispatch({type: "SET_LOADING", payload: false})
+        } catch (error) {
+            console.log(error);   
+        }
+    }
+
+    const getPostById = async (id) => {
+        try {
+            dispatch({type: "SET_LOADING", payload: true})
+            const res = await fetch(`/posts/${id}`)
+            const data = await res.json()
+            console.log(data);
+            dispatch({type: "SET_CURRENT_POST", payload: data})
+            dispatch({type: "SET_LOADING", payload: false}) 
+        } catch (error) {
+            console.log(error); 
+        }
     }
 
     useEffect(() => {
       getPosts()
     }, [])
     
+    
     return(
         <AppContext.Provider value={
-           {...state}
+           {...state, getPostById }
         }>
             {children}
         </AppContext.Provider>

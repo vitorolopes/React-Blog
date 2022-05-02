@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const PostCard = ({author, content, image, title}) => {
+const PostCard = ({author, id, content, image, title}) => {
 
   return (
     <div className='card'>
       <div className="card-info">
         <div className="card-title">
-          <p>{title}</p>
+          <Link to={`/posts/${id}`}>
+             <p>{title}</p>
+          </Link>
         </div>
         <div className="card-author">
           <p>{author}</p>
