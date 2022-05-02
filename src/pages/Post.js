@@ -6,7 +6,7 @@ const Post = () => {
 
   let {postId} = useParams()  
   
-  const {currentBlogPost, getPostById, loading} = useGlobalContext();
+  const {currentBlogPost, getPosts, loading} = useGlobalContext();
   
   const post =  ( 
       currentBlogPost ? 
@@ -27,7 +27,7 @@ const Post = () => {
   )
 
   useEffect(() => {
-    getPostById(postId)
+    getPosts(postId)
   }, [])
 
   if (loading){

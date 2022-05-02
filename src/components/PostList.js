@@ -5,7 +5,7 @@ import PostCard from './PostCard';
 const PostList = () => {
 
   const {blogPosts, loading} = useGlobalContext();
-  console.log(blogPosts);
+ // console.log(blogPosts);
 
  if(loading)  {<div>loading...</div>}
 
